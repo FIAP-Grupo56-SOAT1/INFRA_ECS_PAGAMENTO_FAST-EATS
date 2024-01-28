@@ -1,7 +1,7 @@
 #configuração de segurança 
 
 resource "aws_iam_role" "cargo" {
-  name = "${var.cargoIam}_cargo"
+  name = "${var.cargoIam-api-pagamento}_cargo"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
