@@ -2,9 +2,9 @@ variable "nome_repositorio" {
   type    = string
   default = "repositorio-terraform-api-pagamento"
 }
-variable "cargoIam-api-pagamento" {
+variable "docker pull fiap56soat1/fasteats-ms-pagamento-api" {
   type    = string
-  default = "fasteats-api-pagamento"
+  default = "fasteats-api-ms-pagamento"
 }
 
 variable "perfil" {
