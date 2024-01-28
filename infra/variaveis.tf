@@ -4,12 +4,12 @@ variable "nome_repositorio" {
 }
 variable "cargoIam" {
   type    = string
-  default = "fasteats"
+  default = "fasteats-pagamento"
 }
 
 variable "perfil" {
   type    = string
-  default = "fasteats"
+  default = "fasteats-pagamento"
 }
 
 variable "portaAplicacao" {
@@ -19,7 +19,7 @@ variable "portaAplicacao" {
 
 variable "ambiente" {
   type    = string
-  default = "fasteats"
+  default = "fasteats-pagamento"
 }
 
 variable "containerPort" {
@@ -29,7 +29,7 @@ variable "containerPort" {
 
 variable "containerName" {
   type    = string
-  default = "fasteats"
+  default = "fasteats-pagamento"
 }
 
 variable "imagemDocker" {
