@@ -1,15 +1,15 @@
 variable "nome_repositorio" {
   type    = string
-  default = "repositorio-terraform"
+  default = "repositorio-terraform-api-pagamento"
 }
 variable "cargoIam" {
   type    = string
-  default = "fasteats-pagamento"
+  default = "fasteats-api-pagamento"
 }
 
 variable "perfil" {
   type    = string
-  default = "fasteats-pagamento"
+  default = "fasteats-api-pagamento"
 }
 
 variable "portaAplicacao" {
@@ -19,7 +19,7 @@ variable "portaAplicacao" {
 
 variable "ambiente" {
   type    = string
-  default = "fasteats-pagamento"
+  default = "fasteats-api-pagamento"
 }
 
 variable "containerPort" {
@@ -29,7 +29,7 @@ variable "containerPort" {
 
 variable "containerName" {
   type    = string
-  default = "fasteats-pagamento"
+  default = "fasteats-api-pagamento"
 }
 
 variable "imagemDocker" {

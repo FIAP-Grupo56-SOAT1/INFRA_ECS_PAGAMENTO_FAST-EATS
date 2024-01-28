@@ -22,8 +22,8 @@ module "ecs" {
 }
 
 
-resource "aws_ecs_task_definition" "FASTEATS-API" {
-  family                   = "FASTEATS-TASK"
+resource "aws_ecs_task_definition" "FASTEATS-API-PAGAMENTO" {
+  family                   = "FASTEATS-TASK-API-PAGAMENTO"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = 1024
@@ -70,10 +70,10 @@ resource "aws_ecs_task_definition" "FASTEATS-API" {
   ])
 }
 
-resource "aws_ecs_service" "FASTEATS-API" {
-  name            = "FASTEATS-API"
+resource "aws_ecs_service" "FASTEATS-API-PAGAMENTO" {
+  name            = "FASTEATS-API-PAGAMENTO"
   cluster         = module.ecs.cluster_id
-  task_definition = aws_ecs_task_definition.FASTEATS-API.arn
+  task_definition = aws_ecs_task_definition.FASTEATS-API-PAGAMENTO.arn
   desired_count   = 1
 
   load_balancer {
