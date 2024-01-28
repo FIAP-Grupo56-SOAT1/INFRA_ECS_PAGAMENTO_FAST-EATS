@@ -9,7 +9,7 @@ variable "cargoIam" {
 
 variable "perfil" {
   type    = string
-  default = "fasteats-api-pagamento"
+  default = "fasteats-api-ms-pagamento"
 }
 
 variable "portaAplicacao" {
