@@ -2,7 +2,7 @@ variable "nome_repositorio" {
   type    = string
   default = "repositorio-terraform-api-pagamento"
 }
-variable "cargoIam" {
+variable "cargoIam-api-pagamento" {
   type    = string
   default = "fasteats-api-pagamento"
 }
