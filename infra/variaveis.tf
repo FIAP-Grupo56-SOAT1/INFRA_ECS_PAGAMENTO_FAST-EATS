@@ -93,3 +93,4 @@ variable "URL_COZINHA_PEDIDO_SERVICE" {
   type    = string
   default = "http://localhost:8083"
 }
+
