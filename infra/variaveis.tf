@@ -14,7 +14,7 @@ variable "perfil" {
 
 variable "portaAplicacao" {
   type    = number
-  default = 8081
+  default = 8080
 }
 
 variable "ambiente" {
@@ -24,7 +24,7 @@ variable "ambiente" {
 
 variable "containerPort" {
   type    = number
-  default = 8081
+  default = 8080
 }
 
 variable "containerName" {
