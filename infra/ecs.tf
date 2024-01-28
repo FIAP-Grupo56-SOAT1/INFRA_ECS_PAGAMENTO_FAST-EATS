@@ -58,7 +58,7 @@ resource "aws_ecs_task_definition" "FASTEATS-API" {
           { "NAME" : "MERCADO_PAGO_TIPO_PAGAMENTO", "value" : "${var.containerMercadoPagoTipoPagamento}" },
           { "NAME" : "URL_PEDIDO_SERVICE", "value" : "${var.URL_PEDIDO_SERVICE}" },
           { "NAME" : "URL_COZINHA_PEDIDO_SERVICE", "value" : "${var.URL_COZINHA_PEDIDO_SERVICE}" },
-          { "NAME" : "APP_PORT", "value" : 8080 }
+          { "NAME" : "APP_PORT", "value" : "8080" }
         ]
         "essential" = true
         "portMappings" = [
