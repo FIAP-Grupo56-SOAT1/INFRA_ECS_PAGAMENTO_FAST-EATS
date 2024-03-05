@@ -1,14 +1,18 @@
-name: 'Terraform'
-
+name: 'DESTROY infra producao'
 on:
-  workflow_call:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Environment'
+        required: true
+        default: 'prod'
 
 permissions:
   contents: read
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'DESTROY producao'
     runs-on: ubuntu-latest
 
     defaults:
@@ -22,24 +26,25 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: us-west-2
+          aws-region: us-east-1
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v3.0.0
 
       - name: Terraform Init
         run: |
           cd ./env/prod/
-          terraform init
+          terraform init -reconfigure
 
       - name: Terraform Plan
         run: |
-          cd ./env/prod/
+          cd ./env/prod/ 
           terraform plan -input=false
 
       - name: Terraform Apply
         run: |
           cd ./env/prod/
-          terraform apply -auto-approve
+          terraform destroy -auto-approve
