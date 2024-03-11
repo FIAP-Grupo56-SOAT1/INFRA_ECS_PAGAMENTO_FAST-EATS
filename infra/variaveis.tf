@@ -132,3 +132,15 @@ variable "container_insights" {
   default     = false
   description = "Set to true to enable container insights on the cluster"
 }
+
+variable "access_key" {
+  type    = string
+}
+
+variable "secret_key" {
+  type    = string
+}
+variable "session_token" {
+  type    = string
+}
+
