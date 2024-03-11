@@ -50,7 +50,25 @@ resource "aws_ecs_task_definition" "fasteats" {
             "value" : var.containerMercadoPagoCredential
           },
           { "NAME" : "MERCADO_PAGO_USERID", "value" : var.containerMercadoPagoUderId },
-          { "NAME" : "MERCADO_PAGO_TIPO_PAGAMENTO", "value" : var.containerMercadoPagoTipoPagamento }
+          { "NAME" : "MERCADO_PAGO_TIPO_PAGAMENTO", "value" : var.containerMercadoPagoTipoPagamento },
+          { "NAME" : "AWS_SQS_ENDPOINT", "value" : "https://sqs.us-east-1.amazonaws.com/730335661438" },
+          { "NAME" : "AWS_SQS_QUEUE_PEDIDO_CRIADO", "value" : "pedido-criado" },
+          { "NAME" : "AWS_SQS_QUEUE_PEDIDO_AGUARDANDO_PAGAMENTO", "value" : "pedido-aguardando-pagamento" },
+          { "NAME" : "AWS_SQS_QUEUE_PEDIDO_PAGO", "value" : "pedido-pago" },
+          { "NAME" : "AWS_SQS_QUEUE_PEDIDO_CANCELADO", "value" : "pedido-cancelado" },
+          { "NAME" : "AWS_SQS_QUEUE_COZINHA_RECEBER_PEDIDO", "value" : "cozinha-receber-pedido" },
+          { "NAME" : "AWS_SQS_QUEUE_COZINHA_ERRO_RECEBER_PEDIDO", "value" : "cozinha-erro-receber-pedido" },
+          { "NAME" : "AWS_SQS_QUEUE_PAGAMENTO_GERAR_PAGAMENTO", "value" : "pagamento-gerar-pagamento" },
+          { "NAME" : "AWS_SQS_QUEUE_PAGAMENTO_RECEBER_PEDIDO_PAGO", "value" : "pagamento-receber-pedido-pago" },
+          { "NAME" : "AWS_SQS_QUEUE_NOTIFICAR_CLIENTE", "value" : "notificar-cliente" },
+          { "NAME" : "AWS_SQS_QUEUE_NOTIFICAR_CLIENTE_PEDIDO_PAGO", "value" : "notificar-cliente-pedido-pago" },
+          { "NAME" : "AWS_SQS_QUEUE_PAGAMENTO_CANCELAR_PAGAMENTO", "value" : "pagamento-cancelar-pagamento" },
+          { "NAME" : "AWS_SQS_QUEUE_PAGAMENTO_ERRO_PAGAMENTO_PEDIDO", "value" : "pagamento-erro-pagamento-pedido" },
+          { "NAME" : "AWS_SQS_QUEUE_PAGAMENTO_ERRO_PEDIDO_CANCELAR", "value" : "pagamento-erro-pedido-cancelar" },
+          { "NAME" : "AWS_ACCESS_KEY", "value" : var.access_key },
+          { "NAME" : "AWS_SECRET_KEY", "value" : var.secret_key },
+          { "NAME" : "AWS_SESSION_TOKEN", "value" : var.session_token },
+          { "NAME" : "AWS_REGION", "value" : var.regiao }
         ]
         essential = true
         portMappings = [
@@ -144,13 +162,13 @@ resource "aws_lb_target_group" "target_group_fasteats" {
   target_type = "ip"
   vpc_id      = aws_default_vpc.default_vpc.id # default VPC
   health_check {
-    path = "/actuator/health"
-    port = var.portaAplicacao
-    healthy_threshold = 5
-    unhealthy_threshold = 2
-    timeout = 5
-    interval = 30
-    matcher = "200"  # has to be HTTP 200 or fails
+    path                = "/actuator/health"
+    port                = var.portaAplicacao
+    healthy_threshold   = 5 # O número de verificações de integridade bem-sucedidas consecutivas necessárias antes de considerar um destino não íntegro como íntegro.
+    unhealthy_threshold = 3 # O número de verificações de integridade consecutivas com falha exigido antes considerar um destino como não íntegro.
+    timeout             = 5 # O tempo, em segundos, durante o qual a ausência de resposta significa uma falha na verificação de integridade.
+    interval            = 60
+    matcher             = "200" # has to be HTTP 200 or fails
   }
 }
 
