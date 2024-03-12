@@ -21,19 +21,21 @@ provider "aws" {
 
 # Criando um modulo que utiliza os dados do infra para criação do ambiente
 module "prod" {
-  source                  = "../../infra"
-  containerDbName         = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["dbname"]
-  containerDbUser         = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["username"]
-  containerDbPassword     = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["password"]
-  containerDbRootPassword = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["password"]
-  containerDbServer       = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["host"]
-  containerDbPort         = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["port"]
-  portaAplicacao          = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["app_port"]
-  url_pedido_service      = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["url_pedido_service"]
-  url_cozinha_service     = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["url_cozinha_service"]
-  access_key              = jsondecode(data.aws_secretsmanager_secret_version.credentials_sts.secret_string)["access_key"]
-  secret_key              = jsondecode(data.aws_secretsmanager_secret_version.credentials_sts.secret_string)["secret_key"]
-  session_token           = jsondecode(data.aws_secretsmanager_secret_version.credentials_sts.secret_string)["session_token"]
+  source                                          = "../../infra"
+  containerDbName                                 = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["dbname"]
+  containerDbUser                                 = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["username"]
+  containerDbPassword                             = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["password"]
+  containerDbRootPassword                         = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["password"]
+  containerDbServer                               = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["host"]
+  containerDbPort                                 = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["port"]
+  portaAplicacao                                  = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["app_port"]
+  url_pedido_service                              = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["url_pedido_service"]
+  url_cozinha_service                             = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["url_cozinha_service"]
+  fast_eats_contato_email_padrao_pagamento_pedido = jsondecode(data.aws_secretsmanager_secret_version.credentials.secret_string)["fast_eats_contato_email_padrao_pagamento_pedido"]
+  access_key                                      = jsondecode(data.aws_secretsmanager_secret_version.credentials_sts.secret_string)["access_key"]
+  secret_key                                      = jsondecode(data.aws_secretsmanager_secret_version.credentials_sts.secret_string)["secret_key"]
+  session_token                                   = jsondecode(data.aws_secretsmanager_secret_version.credentials_sts.secret_string)["session_token"]
+
 }
 
 
