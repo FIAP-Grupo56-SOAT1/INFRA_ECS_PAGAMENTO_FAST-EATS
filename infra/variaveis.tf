@@ -144,3 +144,7 @@ variable "session_token" {
   type    = string
 }
 
+variable "fast_eats_contato_email_padrao_pagamento_pedido" {
+  type    = string
+}
+
